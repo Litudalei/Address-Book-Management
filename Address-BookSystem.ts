@@ -136,8 +136,35 @@ class AddressBookMain {
                             console.log("Enter a valid option");
                         }
                     }
+                } else {
+                    console.log("Name is not found to edit");
+                    return;
                 }
             });
+        }
+    }
+
+    public deleteContacts(): void {
+        console.log("\n --- Delete Record --- \n");
+        if (this.contacts.length > 0) {
+            this.contacts.forEach((contact, index) => {
+                console.log(`${index + 1}. ${contact.toString()}`);
+            });
+
+            let firstName = prompt("Enter the first name : ");
+            let lastName = prompt("Enter the last name : ");
+
+            this.contacts.forEach((contact, index) => {
+                if (contact.firstName == firstName && contact.lastName == lastName) {
+                    this.contacts.splice(index, 1);
+                    console.log(`Details of ${firstName} ${lastName} id deleted successfully`);
+                } else {
+                    console.log("Name is not found to delete");
+                    return;
+                }
+            })
+        } else {
+            console.log("No Records to delete");
         }
     }
 
@@ -159,8 +186,9 @@ while (true) {
     console.log("Select the Option \n");
     console.log("1. Create User");
     console.log("2. Edit Users");
-    console.log("3. Display User");
-    console.log("4. Close the application");
+    console.log("3. Delete User");
+    console.log("4. Display User");
+    console.log("5. Close the application");
     let optionNumber: number = Number(prompt("Enter option number : "));
     if (optionNumber == 1) {
 
@@ -189,8 +217,10 @@ while (true) {
     } else if (optionNumber == 2) {
         myAddressBook.editContact();
     } else if (optionNumber == 3) {
+        myAddressBook.deleteContacts();
+    } else if (optionNumber == 4) {
         myAddressBook.displayContacts();
-    } else if (optionNumber == 4){
+    } else if (optionNumber == 5){
         console.log("Thank you");
         break;
     } else {
