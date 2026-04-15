@@ -1,4 +1,8 @@
-"use strict";
+import PromptSync from 'prompt-sync';
+const prompt = PromptSync();
+console.log("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+console.log("Welcome to Address Book Program");
+console.log("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
 class Contact {
     firstName;
     lastName;
@@ -24,11 +28,6 @@ class Contact {
 }
 class AddressBookMain {
     contacts = [];
-    constructor() {
-        console.log("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-        console.log("Welcome to Address Book Program");
-        console.log("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
-    }
     addContact(contact) {
         this.contacts.push(contact);
         console.log(`Contact added successfully: ${contact.firstName} ${contact.lastName}`);
@@ -46,6 +45,29 @@ class AddressBookMain {
     }
 }
 const myAddressBook = new AddressBookMain();
-const contact1 = new Contact("Rishi", "Babu", "123 Potheri", "Chennai", "Tamil Nadu", "L1 1AB", "07123456789", "rishi.babu@gmail.com");
-myAddressBook.addContact(contact1);
-myAddressBook.displayContacts();
+while (true) {
+    console.log("Select the Option \n");
+    console.log("1. Create User");
+    console.log("2. Display Users");
+    console.log("3. Close the application");
+    let optionNumber = Number(prompt("Enter option number : "));
+    if (optionNumber == 1) {
+        let firstName = prompt("Enter yout first name : ");
+        let lastName = prompt("Enter your last name : ");
+        let address = prompt("Enter your address : ");
+        let city = prompt("Enter your city : ");
+        let state = prompt("Enter your state : ");
+        let zip = prompt("Enter your zip code : ");
+        let phoneNumber = prompt("Enter your phone number : ");
+        let emailId = prompt("Enter your mail id : ");
+        const contact1 = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, emailId);
+        myAddressBook.addContact(contact1);
+    }
+    else if (optionNumber == 2) {
+        myAddressBook.displayContacts();
+    }
+    else {
+        console.log("Thank you");
+        break;
+    }
+}
