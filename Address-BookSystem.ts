@@ -191,28 +191,40 @@ while (true) {
     console.log("5. Close the application");
     let optionNumber: number = Number(prompt("Enter option number : "));
     if (optionNumber == 1) {
+        while (true) {
+            let firstName: string = prompt("Enter yout first name : ");
+            let lastName: string = prompt("Enter your last name : ");
+            let address: string = prompt("Enter your address : ");
+            let city: string = prompt("Enter your city : ");
+            let state: string = prompt("Enter your state : ");
+            let zip: string = prompt("Enter your zip code : ");
+            let phoneNumber: string = prompt("Enter your phone number : ");
+            let emailId: string = prompt("Enter your mail id : ");
 
-        let firstName: string = prompt("Enter yout first name : ");
-        let lastName: string = prompt("Enter your last name : ");
-        let address: string = prompt("Enter your address : ");
-        let city: string = prompt("Enter your city : ");
-        let state: string = prompt("Enter your state : ");
-        let zip: string = prompt("Enter your zip code : ");
-        let phoneNumber: string = prompt("Enter your phone number : ");
-        let emailId: string = prompt("Enter your mail id : ");
+            const contact1 = new Contact(
+                firstName,
+                lastName,
+                address,
+                city,
+                state,
+                zip,
+                phoneNumber,
+                emailId
+            );
 
-        const contact1 = new Contact(
-            firstName,
-            lastName,
-            address,
-            city,
-            state,
-            zip,
-            phoneNumber,
-            emailId
-        );
+            myAddressBook.addContact(contact1);
 
-        myAddressBook.addContact(contact1);
+            console.log("---Record created successfully---\n");
+            console.log("1. Create one more");
+            console.log("2. Exit creating");
+
+            let createOption = Number(prompt("Enter the option number : "));
+            if (createOption == 2) {
+                break;
+            } else if (createOption > 2) {
+                console.log("Enter valid option number");
+            }
+        }
 
     } else if (optionNumber == 2) {
         myAddressBook.editContact();
